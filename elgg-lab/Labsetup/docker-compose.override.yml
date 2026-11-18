@@ -1,0 +1,16 @@
+# Host-convenience overrides for the SEED XSS Elgg lab.
+#
+# docker compose automatically merges this file on top of docker-compose.yml.
+# It publishes the Elgg container's port 80 to the host loopback so that a
+# browser / tooling running on the HOST can reach Elgg at http://localhost:8080
+# WITHOUT editing /etc/hosts.
+#
+# Binding to 127.0.0.1 keeps the lab off the physical LAN (isolation).
+#
+# You can still use the classic SEED method instead (add
+# "10.9.0.5  www.seed-server.com" to /etc/hosts and browse to
+# http://www.seed-server.com). Both work; this just adds a loopback shortcut.
+services:
+  elgg:
+    ports:
+      - "127.0.0.1:8080:80"
