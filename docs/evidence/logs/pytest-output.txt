@@ -1,0 +1,53 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.7, pytest-8.3.5, pluggy-1.5.0 -- /usr/bin/python3
+cachedir: .pytest_cache
+rootdir: /home/thang/Documents/hus-k68-khmt/CompSec
+plugins: typeguard-4.4.2
+collecting ... collected 44 items
+
+tests/test_exploit_cli.py::test_validate_payload_valid_returns_zero PASSED [  2%]
+tests/test_exploit_cli.py::test_validate_payload_too_long_returns_one PASSED [  4%]
+tests/test_exploit_cli.py::test_safe_http_get_refuses_public_target PASSED [  6%]
+tests/test_exploit_cli.py::test_dashed_flag_is_accepted_as_subcommand PASSED [  9%]
+tests/test_exploit_cli.py::test_check_runs_and_reports_without_crashing PASSED [ 11%]
+tests/test_exploit_cli.py::test_check_detects_live_js_server PASSED      [ 13%]
+tests/test_exploit_cli.py::test_report_written_and_truthful PASSED       [ 15%]
+tests/test_js_server.py::test_mime_mapping_for_javascript PASSED         [ 18%]
+tests/test_js_server.py::test_health_endpoint_returns_ok_json PASSED     [ 20%]
+tests/test_js_server.py::test_demo_js_served_with_correct_content_type PASSED [ 22%]
+tests/test_js_server.py::test_missing_resource_returns_404 PASSED        [ 25%]
+tests/test_js_server.py::test_path_traversal_is_rejected PASSED          [ 27%]
+tests/test_js_server.py::test_server_unavailable_connection_refused PASSED [ 29%]
+tests/test_js_server.py::test_health_reports_resource_missing_when_dir_empty PASSED [ 31%]
+tests/test_lab_config.py::test_brief_description_limit_is_250 PASSED     [ 34%]
+tests/test_lab_config.py::test_profile_message_is_template_without_hardcoded_id PASSED [ 36%]
+tests/test_lab_config.py::test_render_profile_message_requires_explicit_id PASSED [ 38%]
+tests/test_lab_config.py::test_allowlist_permits_lab_targets[http://localhost:8000/demo.js] PASSED [ 40%]
+tests/test_lab_config.py::test_allowlist_permits_lab_targets[http://127.0.0.1:8000/health] PASSED [ 43%]
+tests/test_lab_config.py::test_allowlist_permits_lab_targets[http://10.9.0.5/] PASSED [ 45%]
+tests/test_lab_config.py::test_allowlist_permits_lab_targets[www.seed-server.com] PASSED [ 47%]
+tests/test_lab_config.py::test_allowlist_permits_lab_targets[http://www.xsslabelgg.com/action/profile/edit] PASSED [ 50%]
+tests/test_lab_config.py::test_allowlist_permits_lab_targets[127.0.0.1:8000] PASSED [ 52%]
+tests/test_lab_config.py::test_allowlist_permits_lab_targets[10.9.0.200] PASSED [ 54%]
+tests/test_lab_config.py::test_allowlist_refuses_out_of_scope_targets[http://example.com/] PASSED [ 56%]
+tests/test_lab_config.py::test_allowlist_refuses_out_of_scope_targets[https://google.com] PASSED [ 59%]
+tests/test_lab_config.py::test_allowlist_refuses_out_of_scope_targets[http://8.8.8.8/] PASSED [ 61%]
+tests/test_lab_config.py::test_allowlist_refuses_out_of_scope_targets[http://10.8.0.5/] PASSED [ 63%]
+tests/test_lab_config.py::test_allowlist_refuses_out_of_scope_targets[http://169.254.0.1/] PASSED [ 65%]
+tests/test_lab_config.py::test_allowlist_refuses_out_of_scope_targets[evil.test] PASSED [ 68%]
+tests/test_lab_config.py::test_allowlist_refuses_out_of_scope_targets[] PASSED [ 70%]
+tests/test_lab_config.py::test_team_roster_matches_official_readme PASSED [ 72%]
+tests/test_payload_validator.py::test_empty_payload_is_within_limit PASSED [ 75%]
+tests/test_payload_validator.py::test_typical_valid_link_payload PASSED  [ 77%]
+tests/test_payload_validator.py::test_exactly_250_characters_passes PASSED [ 79%]
+tests/test_payload_validator.py::test_251_characters_fails PASSED        [ 81%]
+tests/test_payload_validator.py::test_unicode_vietnamese_counts_code_points_not_bytes PASSED [ 84%]
+tests/test_payload_validator.py::test_unicode_single_emoji_is_one_or_two_code_points_but_several_bytes PASSED [ 86%]
+tests/test_payload_validator.py::test_limit_boundary_with_unicode PASSED [ 88%]
+tests/test_payload_validator.py::test_non_string_payload_raises_type_error PASSED [ 90%]
+tests/test_payload_validator.py::test_negative_limit_raises_value_error PASSED [ 93%]
+tests/test_payload_validator.py::test_custom_limit_is_respected PASSED   [ 95%]
+tests/test_payload_validator.py::test_explain_mentions_pass_or_fail PASSED [ 97%]
+tests/test_payload_validator.py::test_nfc_normalization_reported_for_decomposed_input PASSED [100%]
+
+============================== 44 passed in 3.62s ==============================

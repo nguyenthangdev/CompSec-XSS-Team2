@@ -1,0 +1,13 @@
+[demo-js-host] serving /home/thang/Documents/hus-k68-khmt/CompSec/src/js_server
+[demo-js-host] listening on http://127.0.0.1:8000
+[demo-js-host] health:   http://127.0.0.1:8000/health
+[demo-js-host] resource: http://127.0.0.1:8000/demo.js
+[demo-js-host] press Ctrl+C to stop
+2026-11-18T10:42:47 127.0.0.1 "GET /health HTTP/1.1" 200 -
+2026-11-18T10:42:47 127.0.0.1 "GET /health HTTP/1.1" 200 -
+2026-11-18T10:42:47 127.0.0.1 "HEAD /demo.js HTTP/1.1" 200 -
+2026-11-18T10:42:47 127.0.0.1 "GET /nope.js HTTP/1.1" 404 -
+2026-11-18T10:42:47 127.0.0.1 "GET /health HTTP/1.1" 200 -
+2026-11-18T10:42:47 127.0.0.1 "GET /demo.js HTTP/1.1" 200 -
+2026-11-18T10:43:12 127.0.0.1 "GET /health HTTP/1.1" 200 -
+2026-11-18T10:43:12 127.0.0.1 "GET /demo.js HTTP/1.1" 200 -

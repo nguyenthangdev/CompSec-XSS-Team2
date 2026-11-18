@@ -1,0 +1,18 @@
+
+=== 1) Login as samy (own account) ===
+login http=200
+logged in as samy, guid=59
+
+=== 2) Length behaviour: store 300 chars, read back ===
+edit http=302
+stored read-back length (attribute-escaped) = 303  -> field accepted a >250-char value
+
+=== 3) Stored XSS: store a harmless <script src> and show raw rendering ===
+edit http=302
+RESULT: payload rendered UN-ENCODED in the profile body => STORED XSS CONFIRMED
+
+=== 4) Reset samy's Brief Description to empty (clean up) ===
+edit http=302
+briefdescription now = '[]'
+
+Done. This PoC modified ONLY samy's own profile and reset it.
