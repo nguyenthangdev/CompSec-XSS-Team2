@@ -1,0 +1,21 @@
+%% THEORETICAL self-propagation chain (analysis only - NOT implemented).
+%% Dashed "replicate/forge" steps are described in docs, never executed here.
+sequenceDiagram
+    participant SamyP as Samy profile (seeded)
+    actor Alice
+    participant AliceP as Alice profile
+    actor Boby
+    participant Worm as xssworm.js host
+
+    Note over SamyP: Brief Description stores a short<br/>&lt;script src=.../xssworm.js&gt; reference
+    Alice->>SamyP: View Samy's profile (logged in)
+    SamyP-->>Alice: HTML with the stored reference
+    Alice->>Worm: Fetch xssworm.js
+    Worm-->>Alice: worm logic (runs in Elgg origin, as Alice)
+    rect rgb(255,235,235)
+        Note over Alice,AliceP: THEORY ONLY (not run in this project):
+        Alice-->>AliceP: forge /action/profile/edit to insert the<br/>same reference + deface About me
+        Alice-->>SamyP: forge /action/friends/add
+    end
+    Boby->>AliceP: Later views Alice's profile
+    AliceP-->>Boby: same reference -> Boby would be infected next

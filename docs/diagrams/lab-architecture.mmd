@@ -1,0 +1,18 @@
+%% Isolated lab architecture (all local / loopback)
+flowchart LR
+    subgraph Host["Host machine (localhost)"]
+        Browser["Browser<br/>Chrome / Firefox<br/>(human-driven)"]
+        JS["demo.js host server<br/>src/js_server/server.py<br/>127.0.0.1:8000"]
+        CLI["exploit.py<br/>(verification CLI,<br/>allow-list enforced)"]
+    end
+    subgraph Docker["Docker network net-10.9.0.0 (10.9.0.0/24)"]
+        Elgg["Elgg 3.0 + Apache/PHP<br/>www.seed-server.com<br/>10.9.0.5 (host :8080)"]
+        DB["MySQL 8.0.22<br/>elgg_seed<br/>10.9.0.6"]
+    end
+    Browser -->|"1 view profile (HTTP)"| Elgg
+    Elgg -->|"stored Brief Description<br/>contains script src"| Browser
+    Browser -->|"2 fetch demo.js (HTTP)"| JS
+    JS -->|"application/javascript"| Browser
+    Elgg <-->|"SQL"| DB
+    CLI -.->|"health / check (loopback only)"| JS
+    CLI -.->|"availability probe"| Elgg

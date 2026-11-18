@@ -1,0 +1,16 @@
+%% Data-flow of the stored reference (how content reaches later visitors)
+flowchart TD
+    A["Attacker-controlled<br/>short reference<br/>(&lt;script src=URL&gt;)"] -->|manual save| B["Elgg DB<br/>profile metadata<br/>(briefdescription)"]
+    B -->|rendered RAW by<br/>output/text.php| C["Profile HTML page"]
+    C -->|served to every visitor| D["Victim browser<br/>(Elgg origin)"]
+    D -->|GET URL| E["External JS host<br/>demo.js / xssworm.js"]
+    E -->|script body| D
+    D -. "THEORY ONLY:<br/>re-insert reference<br/>into viewer's own field" .-> B
+    subgraph Defenses["Any one of these breaks the flow"]
+        F["Output encoding<br/>(htmlspecialchars)"]
+        G["Input filtering<br/>(HTMLawed/jsoup)"]
+        H["CSP script-src"]
+    end
+    F -.->|neutralises C->D| C
+    G -.->|blocks A->B| B
+    H -.->|blocks D->E & inline| D

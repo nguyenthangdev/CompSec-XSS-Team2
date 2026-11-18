@@ -1,0 +1,15 @@
+%% Normal, manual profile edit (observed with DevTools)
+sequenceDiagram
+    actor User as User (own account)
+    participant Browser
+    participant Elgg
+
+    User->>Browser: Click "Edit profile", change fields
+    Browser->>Elgg: GET /profile/<user>/edit (form + __elgg_ts/__elgg_token)
+    Elgg-->>Browser: Edit form HTML
+    User->>Browser: Save
+    Browser->>Elgg: POST /action/profile/edit<br/>name, briefdescription, description,<br/>accesslevel[], guid, __elgg_ts, __elgg_token<br/>(+ session cookie, auto)
+    Elgg->>Elgg: Validate CSRF token, persist metadata
+    Elgg-->>Browser: 302 redirect to profile
+    Browser->>Elgg: GET profile
+    Elgg-->>Browser: Profile with new values rendered

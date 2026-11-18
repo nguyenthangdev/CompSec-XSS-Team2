@@ -1,0 +1,14 @@
+%% Harmless stored-XSS proof of concept (what we actually demonstrate)
+sequenceDiagram
+    actor Attacker as Samy (owner, manual)
+    participant Elgg as Elgg (www.seed-server.com)
+    participant Victim as Victim browser (Alice)
+    participant JS as demo.js host (127.0.0.1:8000)
+
+    Attacker->>Elgg: Manually save Brief Description =<br/>&lt;script src="http://localhost:8000/demo.js"&gt;
+    Note over Elgg: Stored as profile metadata.<br/>output/text.php echoes it RAW (encoding disabled)
+    Victim->>Elgg: GET Samy's profile
+    Elgg-->>Victim: HTML including the raw script tag
+    Victim->>JS: GET /demo.js
+    JS-->>Victim: 200 application/javascript (harmless)
+    Note over Victim: Script runs in Elgg origin:<br/>shows banner + alert, logs local event.<br/>NO account change, NO token read.
