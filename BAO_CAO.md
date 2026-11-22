@@ -1,6 +1,6 @@
 # BÁO CÁO DỰ ÁN — Stored XSS tự lan truyền trên Elgg (phiên bản an toàn)
 
-**Môn:** Bảo mật máy tính · **Lớp:** HUS K68 KHMT
+**Môn:** An toàn máy tính · **Lớp:** HUS K68 KHMT
 **Nhóm:** Nguyễn Văn Thắng (23001938, nhóm trưởng) · Đinh Bá Thi (23001942) · Đinh Quang Tiến (23001943)
 
 > **Phạm vi an toàn:** Toàn bộ thực hiện trong lab cô lập (loopback + mạng Docker
@@ -41,19 +41,19 @@ CompSec/
 
 ## 2. Thành phần đã hiện thực
 
-| Thành phần | Mô tả | Trạng thái |
-|---|---|---|
-| Lab Elgg 3.0 (Docker) | Mục tiêu dễ tổn thương, đã dựng & kiểm chứng chạy | ✅ |
-| Web server JS (`server.py`) | health, MIME JS đúng, 404, log, chống path traversal | ✅ |
-| `demo.js` | Payload minh hoạ **vô hại** (banner + alert) | ✅ |
-| Validator độ dài | Đếm code point vs byte UTF-8, chuẩn 250 | ✅ |
-| `exploit.py` | `--check/--serve/--validate-payload/--test/--report` | ✅ |
-| 44 test pytest | validator, server, config, CLI | ✅ (44/44) |
-| PoC HTTP (`scripts/`) | Chứng minh Stored XSS mức HTTP, tự reset | ✅ |
-| Tài liệu + sơ đồ | audit, kế hoạch, phân tích, 5 sơ đồ | ✅ |
-| PowerPoint (13 slide, VN) | có speaker notes, khai báo AI | ✅ |
-| Tài liệu video | kịch bản/shotlist/checklist/YouTube | ✅ |
-| Worm tự lan truyền | **chỉ phân tích lý thuyết** | ⚠️ PARTIAL (cố ý) |
+| Thành phần                  | Mô tả                                                | Trạng thái        |
+| --------------------------- | ---------------------------------------------------- | ----------------- |
+| Lab Elgg 3.0 (Docker)       | Mục tiêu dễ tổn thương, đã dựng & kiểm chứng chạy    | ✅                |
+| Web server JS (`server.py`) | health, MIME JS đúng, 404, log, chống path traversal | ✅                |
+| `demo.js`                   | Payload minh hoạ **vô hại** (banner + alert)         | ✅                |
+| Validator độ dài            | Đếm code point vs byte UTF-8, chuẩn 250              | ✅                |
+| `exploit.py`                | `--check/--serve/--validate-payload/--test/--report` | ✅                |
+| 44 test pytest              | validator, server, config, CLI                       | ✅ (44/44)        |
+| PoC HTTP (`scripts/`)       | Chứng minh Stored XSS mức HTTP, tự reset             | ✅                |
+| Tài liệu + sơ đồ            | audit, kế hoạch, phân tích, 5 sơ đồ                  | ✅                |
+| PowerPoint (13 slide, VN)   | có speaker notes, khai báo AI                        | ✅                |
+| Tài liệu video              | kịch bản/shotlist/checklist/YouTube                  | ✅                |
+| Worm tự lan truyền          | **chỉ phân tích lý thuyết**                          | ⚠️ PARTIAL (cố ý) |
 
 ## 3. Lệnh cài đặt
 
@@ -107,6 +107,7 @@ Bằng chứng: `docs/evidence/logs/stored-xss-http-poc.txt`, `elgg-http-poc-run
 44 passed in ~3.6s     (docs/evidence/logs/pytest-output.txt)
 exploit.py --check:  8/8 checks passed   (docs/evidence/logs/exploit-check-full.txt)
 ```
+
 Phủ: giới hạn 250, đúng/vượt giới hạn, Unicode tiếng Việt, NFC, emoji, kiểu dữ liệu sai; health/MIME/404/unavailable của server; allow-list cho/ từ chối; CLI validate/check/report; từ chối host công khai.
 
 ## 9. Git commits
@@ -124,13 +125,14 @@ feat(infra): demo.js host server, payload validator, central config + allow-list
 feat(lab): reproducible Elgg 3.0 docker environment + lab docs
 chore: workspace audit, requirements matrix, and project plans
 ```
+
 (9 commit cục bộ trên nhánh `main`; chưa push.)
 
 ## 10. File PowerPoint
 
 `deliverables/Self_Propagation_XSS_Group_Presentation.pptx` — 13 slide tiếng Việt,
-có speaker notes, đã qua `validate.py` (PASSED). *Lưu ý: môi trường dựng không có
-LibreOffice nên nhóm nên mở lại bằng PowerPoint để rà soát thị giác lần cuối.*
+có speaker notes, đã qua `validate.py` (PASSED). _Lưu ý: môi trường dựng không có
+LibreOffice nên nhóm nên mở lại bằng PowerPoint để rà soát thị giác lần cuối._
 
 ## 11. Tài liệu video
 
