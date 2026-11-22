@@ -19,3 +19,6 @@ docs/evidence/screenshots/*.tmp
 # Original course materials — kept on disk, NOT tracked (large binaries +
 # SEED reference worm). The reproducible lab lives in elgg-lab/.
 Resource/
+
+# Ghi chú nội bộ của nhóm — KHÔNG đẩy lên GitHub
+TOM_TAT_CAN_LAM.md
